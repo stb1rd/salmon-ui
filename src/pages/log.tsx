@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <h2 className="text-3xl">Оценка показателей</h2>
-      {data.content.map((x, i) => (
+      {data.content.map((x: string, i: number) => (
         <pre className="text-xs" key={i}>
           {JSON.stringify(x, null, ' ')}
         </pre>
