@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOCKED_GRADES = {
   content: [
     {
