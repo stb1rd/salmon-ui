@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import WaterIcon from '@mui/icons-material/Water';
 import Link from 'next/link';
 import MenuIcon from '@mui/icons-material/Menu';
+import Head from 'next/head';
 
 const MENU = [
   { label: 'Журнал', href: '/log' },
@@ -11,6 +12,9 @@ const MENU = [
 
 export const Layout = ({ children }: { children: ReactNode }) => (
   <>
+    <Head>
+      <title>{process.env.NODE_ENV === 'development' && '[DEV] '}Форель для всех</title>
+    </Head>
     <header className="flex gap-2 justify-between p-2 bg-white sticky top-0 z-10">
       <Link href="/" className="flex gap-2 items-center btn btn-link no-underline hover:no-underline">
         <WaterIcon style={{ color: '#444', fontSize: 32 }} />
