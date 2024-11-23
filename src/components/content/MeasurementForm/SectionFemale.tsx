@@ -10,10 +10,10 @@ export const SectionFemale = () => {
       <div className="divider" />
       <div className="mt-4 flex gap-4 flex-wrap items-end">
         <h2 className="text-xl w-full">Репродуктивные показатели</h2>
-        <Input type="number" name="weightOfEggs" label="Масса икры" />
-        <Input type="number" name="weightOfSingleEgg" label="Масса икринки" />
-        <Input type="number" name="caviarProportion" label="Доля икры" />
-        <Input type="number" name="workingFertility" label="Рабочая плодовитость" />
+        <Input type="number" name="weightOfEggs" label="Масса икры" topRightLabel="г" />
+        <Input type="number" name="weightOfSingleEgg" label="Масса икринки" topRightLabel="мг" />
+        <Input type="number-percent" name="caviarProportion" label="Доля икры" />
+        <Input type="number-percent" name="workingFertility" label="Рабочая плодовитость" />
       </div>
       <div className="divider" />
       <div className="mt-4 flex gap-4 flex-wrap items-end">

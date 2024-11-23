@@ -6,14 +6,16 @@ type Props = {
   max?: number;
   step?: number;
   type?: 'text' | 'date' | 'number' | 'number-percent';
+  topRightLabel?: string;
 };
 
-export const Input = ({ label, name, type = 'text', max, step }: Props) => {
+export const Input = ({ label, name, type = 'text', max, step, topRightLabel }: Props) => {
   let inputType = type;
   let placeholder = 'Текст';
   let inputMin;
   let inputMax;
   let inputStep;
+  let inputmode;
   if (type === 'number') {
     placeholder = 'Число';
     inputMin = 0;
@@ -31,13 +33,17 @@ export const Input = ({ label, name, type = 'text', max, step }: Props) => {
   if (step) {
     inputStep = step;
   }
+  if (inputType === 'number') {
+    inputmode = 'decimal' as const;
+  }
 
   const { register } = useFormContext();
 
   return (
     <label className="form-control w-full max-w-xs">
-      <div className="label">
+      <div className="label items-end">
         <span className="label-text">{label}</span>
+        {topRightLabel && <span className="label-text">{topRightLabel}</span>}
       </div>
       <input
         type={inputType}
@@ -46,6 +52,7 @@ export const Input = ({ label, name, type = 'text', max, step }: Props) => {
         min={inputMin}
         max={inputMax}
         step={inputStep}
+        inputMode={inputmode}
         required
         {...register(name)}
       />
