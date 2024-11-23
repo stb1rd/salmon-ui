@@ -1,29 +1,31 @@
 import { useFormContext } from 'react-hook-form';
 
-export const Input = ({
-  label,
-  name,
-  type = 'text',
-}: {
+type Props = {
   label: string;
   name: string;
+  max?: number;
   type?: 'text' | 'date' | 'number' | 'number-percent';
-}) => {
+};
+
+export const Input = ({ label, name, type = 'text', max }: Props) => {
   let inputType = type;
   let placeholder = 'Текст';
-  let min;
-  let max;
-  let step;
+  let inputMin;
+  let inputMax;
+  let inputStep;
   if (type === 'number') {
     placeholder = 'Число';
-    min = 0;
-    max = 10000;
+    inputMin = 0;
+    inputMax = 10000;
   }
   if (type === 'number-percent') {
     placeholder = 'Процент';
-    min = 0;
-    max = 100;
+    inputMin = 0;
+    inputMax = 100;
     inputType = 'number';
+  }
+  if (max) {
+    inputMax = max;
   }
 
   const { register } = useFormContext();
@@ -37,9 +39,10 @@ export const Input = ({
         type={inputType}
         placeholder={placeholder}
         className="input input-bordered w-full max-w-xs"
-        min={min}
-        max={max}
-        step={step}
+        min={inputMin}
+        max={inputMax}
+        step={inputStep}
+        required
         {...register(name)}
       />
     </label>

@@ -13,7 +13,7 @@ const MENU = [
 export const Layout = ({ children }: { children: ReactNode }) => (
   <>
     <Head>
-      <title>{process.env.NODE_ENV === 'development' && '[DEV] '}Форель для всех</title>
+      <title>{process.env.NODE_ENV === 'development' ? '⚙️ ' : ''}Форель для всех</title>
     </Head>
     <header className="flex gap-2 justify-between p-2 bg-white sticky top-0 z-10">
       <Link href="/" className="flex gap-2 items-center btn btn-link no-underline hover:no-underline">
@@ -43,6 +43,6 @@ export const Layout = ({ children }: { children: ReactNode }) => (
         </nav>
       </div>
     </header>
-    <main className="px-7 py-2">{children}</main>
+    <main className="px-7 py-2 mt-8">{children}</main>
   </>
 );
