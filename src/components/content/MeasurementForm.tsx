@@ -1,10 +1,10 @@
-import { Input } from '@/ui/Input';
-import { InputDate } from '@/ui/InputDate';
-import { InputNumber } from '@/ui/InputNumber';
+import { Input } from '@/components/ui/Input';
+import { InputDate } from '@/components/ui/InputDate';
+import { InputNumber } from '@/components/ui/InputNumber';
 
 export const MeasurementForm = () => {
   return (
-    <main className="p-4">
+    <>
       <h2 className="text-3xl">Новый бонитет</h2>
       <div className="mt-4 flex gap-4 flex-wrap">
         <Input label="Метка (Идентификатор)" />
@@ -56,6 +56,6 @@ export const MeasurementForm = () => {
       <div className="mt-12 flex gap-4 flex-wrap">
         <button className="btn btn-primary w-40">Сохранить</button>
       </div>
-    </main>
+    </>
   );
 };

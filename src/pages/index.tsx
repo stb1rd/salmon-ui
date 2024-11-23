@@ -1,14 +1,18 @@
-import { MeasurementForm } from '@/MeasurementForm';
-import WaterIcon from '@mui/icons-material/Water';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div>
-      <header className="flex gap-2 font-serif items-center justify-center p-2 bg-white sticky top-0">
-        <h1 className="text-xl">форель для всех</h1>
-        <WaterIcon fontSize="large" />
-      </header>
-      <MeasurementForm />
+    <div className="hero py-10">
+      <div className="hero-content text-center flex flex-col">
+        <p className="mt-3 max-w-xl">
+          <h1 className="font-serif text-2xl inline-block">форель для всех</h1> - это сервис для оценки племенной
+          ценности радужной форели. Большинство систем находится в активной разработке
+        </p>
+        <p className="mt-6">Доступный функционал</p>
+        <Link href="/new-bonitet" className="btn btn-primary">
+          Добавить бонитет
+        </Link>
+      </div>
     </div>
   );
 }
