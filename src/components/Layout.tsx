@@ -6,7 +6,7 @@ import Head from 'next/head';
 
 const MENU = [
   { label: 'Журнал', href: '/log' },
-  { label: 'Новый бонитет', href: '/new-bonitet' },
+  { label: 'Новая оценка', href: '/new-bonitet' },
   { label: 'Родословные', href: '/lineage' },
 ];
 
