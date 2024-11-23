@@ -38,9 +38,9 @@ export const MeasurementForm = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="text-3xl">Новый бонитет</h2>
+        <h2 className="text-3xl">Оценка показателей</h2>
         <div className="mt-4 flex gap-4 flex-wrap">
-          <Input type="date" name="tag" label="Метка (Идентификатор)" />
+          <Input name="tag" label="Метка (Идентификатор)" />
           <Input type="date" name="dateOfBirth" label="Дата рождения" />
           <Input type="date" name="dateOfHatch" label="Дата вылупления" />
           <Input type="date" name="dateOfFirstFeed" label="Дата начала питания" />
