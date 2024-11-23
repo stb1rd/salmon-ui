@@ -1,5 +1,6 @@
 export const BASE_PATH = process.env.NODE_ENV === 'development' ? '' : '/salmon-ui';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MAP_LABEL_TO_FIELD_NAME = [
   ['Метка (Идентификатор)', 'tag'],
   ['Дата рождения', 'dateOfBirth'],
