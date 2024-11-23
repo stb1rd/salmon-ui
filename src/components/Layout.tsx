@@ -15,7 +15,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
     <Head>
       <title>{process.env.NODE_ENV === 'development' ? '⚙️ ' : ''}Форель для всех</title>
     </Head>
-    <header className="flex gap-2 justify-between p-2 bg-white sticky top-0 z-10 max-w-[1384px] mx-auto">
+    <header className="flex gap-2 justify-between p-2 bg-white dark:bg-black sticky top-0 z-10 max-w-[1384px] mx-auto">
       <Link href="/" className="flex gap-2 items-center btn btn-link no-underline hover:no-underline">
         <WaterIcon style={{ color: '#444', fontSize: 32 }} />
         <span className="text-xl text-foreground font-serif">форель для всех</span>

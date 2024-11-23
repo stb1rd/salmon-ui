@@ -9,9 +9,14 @@ export default function Home() {
           ценности радужной форели. Большинство систем находится в активной разработке
         </p>
         <p className="mt-6">Доступный функционал</p>
-        <Link href="/new-bonitet" className="btn btn-primary">
-          Начать оценку
-        </Link>
+        <div className="flex gap-2">
+          <Link href="/log" className="btn btn-primary">
+            Просмотреть журнал оценок
+          </Link>
+          <Link href="/new-bonitet" className="btn btn-primary">
+            Начать оценку
+          </Link>
+        </div>
       </div>
     </div>
   );
