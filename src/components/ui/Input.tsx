@@ -18,13 +18,11 @@ export const Input = ({
     placeholder = 'Число';
     min = 0;
     max = 10000;
-    step = 10;
   }
   if (type === 'number-percent') {
     placeholder = 'Процент';
     min = 0;
     max = 100;
-    step = 0.5;
     inputType = 'number';
   }
 

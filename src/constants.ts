@@ -17,9 +17,9 @@ const MAP_LABEL_TO_FIELD_NAME = [
   ['Индекс головы', 'headFactor'],
   ['Индекс толщины', 'thickFactor'],
   ['Индекс прогонистости', 'runnabilityIndex'],
-  ['Объем эякулята в день оплодотворения', 'ejaculateVolumeOnTheDayOfFertilization'],
+  ['Объем эякулята в день оплодотворения', 'ejaculateVolume'],
   ['Концентрация сперматозоидов/сперматокрит', 'spermConcentration'],
-  ['Время подвижности сперматозоидов на оплодотворяющем растворе/воде  ', 'spermMotilityTimeOnFertilizingSolution'],
+  ['Время подвижности сперматозоидов на оплодотворяющем растворе/воде  ', 'spermMotilityTime'],
   // Репродуктивные показатели
   ['Масса икры', 'weightOfEggs'],
   ['Масса икринки', 'weightOfSingleEgg'],

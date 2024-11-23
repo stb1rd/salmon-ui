@@ -1,6 +1,8 @@
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 
 import { Input } from '../ui/Input';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
 
 export type MeasurementInputs = {
   tag?: string;
@@ -20,9 +22,9 @@ export type MeasurementInputs = {
   thickFactor?: string;
   runnabilityIndex?: string;
   gender?: 'unknown' | 'male' | 'female';
-  ejaculateVolumeOnTheDayOfFertilization?: string;
+  ejaculateVolume?: string;
   spermConcentration?: string;
-  spermMotilityTimeOnFertilizingSolution?: string;
+  spermMotilityTime?: string;
   journal?: string;
 };
 
@@ -33,7 +35,44 @@ export const MeasurementForm = () => {
     },
   });
   const { handleSubmit, register, watch } = methods;
-  const onSubmit: SubmitHandler<MeasurementInputs> = (data) => console.log(data);
+
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationFn: async (values: MeasurementInputs) =>
+      await fetch('http://194.87.131.215:8080/trout/rest/selects_grading?size=1000', {
+        method: 'POST',
+        body: JSON.stringify({
+          marker: values.tag,
+          dateOfBirth: values.dateOfBirth,
+          dateOfHatching: values.dateOfHatch,
+          dateOfStartFeeding: values.dateOfFirstFeed,
+          estimatedAgeDays: Number(values.ageInDays),
+          estimatedAgeDegreeDays: Number(values.ageInDayDegrees),
+
+          absoluteLength: Number(values.lengthAbsolute),
+          bodyLengthBeforeEndScaleCover: Number(values.lengthBeforeScales),
+          bodyLength: Number(values.lengthBody),
+          headLength: Number(values.lengthHead),
+          bodyHeight: Number(values.heightBody),
+          backThickness: Number(values.thicknessOfBack),
+          fatnessIndex: Number(values.fatnessFactor),
+          headIndex: Number(values.headFactor),
+          thicknessIndex: Number(values.thickFactor),
+          indexRunnability: Number(values.runnabilityIndex),
+          ejaculateVolume: Number(values.ejaculateVolume),
+          spermatocritValue: Number(values.spermConcentration),
+          spermMotilityTime: Number(values.spermMotilityTime),
+          diary: values.journal,
+        }),
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['log'] });
+      router.push('/log');
+    },
+  });
+
+  const onSubmit: SubmitHandler<MeasurementInputs> = (values) => mutate(values);
 
   return (
     <FormProvider {...methods}>
@@ -95,15 +134,11 @@ export const MeasurementForm = () => {
             <div className="divider" />
             <div className="mt-4 flex gap-4 flex-wrap items-end">
               <h2 className="text-xl w-full">Репродуктивные показатели</h2>
-              <Input
-                type="number"
-                name="ejaculateVolumeOnTheDayOfFertilization"
-                label="Объем эякулята в день оплодотворения"
-              />
+              <Input type="number" name="ejaculateVolume" label="Объем эякулята в день оплодотворения" />
               <Input type="number" name="spermConcentration" label="Концентрация сперматозоидов/сперматокрит" />
               <Input
                 type="number"
-                name="spermMotilityTimeOnFertilizingSolution"
+                name="spermMotilityTime"
                 label="Время подвижности сперматозоидов на оплодотворяющем растворе/воде"
               />
             </div>
@@ -174,7 +209,15 @@ export const MeasurementForm = () => {
           </div>
         </div>
         <div className="mt-12 flex gap-4 flex-wrap">
-          <button className="btn btn-primary w-40">Сохранить</button>
+          <button className="btn btn-primary w-40" disabled={isPending}>
+            {isPending && <span className="loading loading-spinner" />}
+            {!isPending && 'Сохранить'}
+          </button>
+          {isSuccess && (
+            <div className="alert alert-success">
+              <span>Сохранение успешно</span>
+            </div>
+          )}
         </div>
       </form>
     </FormProvider>
