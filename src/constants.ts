@@ -1,5 +1,11 @@
 export const BASE_PATH = process.env.NODE_ENV === 'development' ? '' : '/salmon-ui';
 
+export const POST_PARAMS = {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+};
+export const URL_GRADING_POST = 'http://194.87.131.215:8080/trout/rest/selects_grading';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MAP_LABEL_TO_FIELD_NAME = [
   ['Метка (Идентификатор)', 'tag'],
@@ -13,14 +19,16 @@ const MAP_LABEL_TO_FIELD_NAME = [
   ['Длина туловища', 'lengthBody'],
   ['Длина головы', 'lengthHead'],
   ['Высота тела', 'heightBody'],
+  ['Толщина тела', 'thicknessBody'],
   ['Толщина спинки', 'thicknessOfBack'],
+  ['Вес тела', 'weight'],
   ['Коэффициент упитанности', 'fatnessFactor'],
   ['Индекс головы', 'headFactor'],
   ['Индекс толщины', 'thickFactor'],
   ['Индекс прогонистости', 'runnabilityIndex'],
   ['Объем эякулята в день оплодотворения', 'ejaculateVolume'],
   ['Концентрация сперматозоидов/сперматокрит', 'spermConcentration'],
-  ['Время подвижности сперматозоидов на оплодотворяющем растворе/воде  ', 'spermMotilityTime'],
+  ['Время подвижности сперматозоидов на оплодотворяющем растворе/воде', 'spermMotilityTime'],
   // Репродуктивные показатели
   ['Масса икры', 'weightOfEggs'],
   ['Масса икринки', 'weightOfSingleEgg'],
@@ -30,8 +38,8 @@ const MAP_LABEL_TO_FIELD_NAME = [
   ['% оплодотворения икры', 'percentOfEggFertilization'],
   ['% выживания эмбрионов', 'percentOfEmbryoSurvival'],
   ['% выхода эмбрионов', 'percentOfEmbryoYield'],
-  ['% гибели до глазка', 'percentOfOfDeathToThePeephole'],
-  ['% гибели после глазка', 'percentOfOfDeathAfterThePeephole'],
+  ['% гибели до глазка', 'percentOfDeathToThePeephole'],
+  ['% гибели после глазка', 'percentOfDeathAfterThePeephole'],
   ['% патологий развития после глазка', 'postOcularDevelopmentalAbnormalities'],
   ['% вылупления за 2 дня', 'percentOfHatchingInTwoDays'],
   ['% поднявшихся на плав через 210 градусо-дней после вылупления', 'percentOfWentUpOnTheFloat'],

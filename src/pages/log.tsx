@@ -63,7 +63,7 @@ export default function Home() {
   const { data, isLoading } = useQuery({
     queryKey: ['log'],
     queryFn: async () => {
-      return MOCKED_GRADES;
+      // return MOCKED_GRADES;
       const response = await fetch('http://194.87.131.215:8080/trout/rest/selects_grading');
       return await response.json();
     },

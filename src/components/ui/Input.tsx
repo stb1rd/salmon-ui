@@ -4,10 +4,11 @@ type Props = {
   label: string;
   name: string;
   max?: number;
+  step?: number;
   type?: 'text' | 'date' | 'number' | 'number-percent';
 };
 
-export const Input = ({ label, name, type = 'text', max }: Props) => {
+export const Input = ({ label, name, type = 'text', max, step }: Props) => {
   let inputType = type;
   let placeholder = 'Текст';
   let inputMin;
@@ -26,6 +27,9 @@ export const Input = ({ label, name, type = 'text', max }: Props) => {
   }
   if (max) {
     inputMax = max;
+  }
+  if (step) {
+    inputStep = step;
   }
 
   const { register } = useFormContext();
