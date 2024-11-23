@@ -59,8 +59,8 @@ export const MeasurementForm = () => {
         )}
         <div className="mt-12 flex gap-4 flex-col items-start">
           {isErrorVisible && (
-            <div className="toast">
-              <div role="alert" className="alert alert-error bg-red-600 text-white">
+            <div className="toast toast-top top-16 toast-center min-w-px w-11/12 md:toast-end md:toast-bottom md:w-auto">
+              <div role="alert" className="alert alert-error bg-red-600 text-white whitespace-pre-wrap">
                 <ErrorOutlineIcon fontSize="small" />
                 <span>
                   <strong>Ошибка</strong> при сохранении данных, попробуйте еще раз
@@ -76,9 +76,9 @@ export const MeasurementForm = () => {
             </div>
           )}
           {isSuccessMsgVisible && (
-            <div className="toast">
+            <div className="toast toast-top top-16 toast-center min-w-px w-full md:toast-end md:toast-bottom md:w-auto">
               <div className="flex flex-col gap-1 items-start">
-                <div className="alert bg-green-600 text-white w-auto pr-8">
+                <div className="alert bg-green-600 text-white w-full md:w-auto pr-8 grid-flow-col">
                   <DoneIcon />
                   <strong>Оценка сохранена</strong>
                   <button
@@ -92,8 +92,28 @@ export const MeasurementForm = () => {
               </div>
             </div>
           )}
-          <p>
-            После сохранения можно отредактировать и отправить ее повторно, либо{' '}
+          <p className="md:hidden block">
+            После сохранения можно отредактировать и отправить оценку повторно, либо{' '}
+            <button
+              type="button"
+              className="btn-link"
+              onClick={() => {
+                reset();
+                setIsSuccessMsgVisible(false);
+              }}
+            >
+              сбросить все поля
+            </button>
+            ,
+          </p>
+          <p className="md:hidden block mt-4">
+            либо открыть{' '}
+            <Link className="btn-link" href="/log">
+              таблицу с оценками
+            </Link>
+          </p>
+          <p className="hidden md:block">
+            После сохранения можно отредактировать и отправить оценку повторно, либо{' '}
             <button
               type="button"
               className="btn-link"
@@ -109,13 +129,13 @@ export const MeasurementForm = () => {
               таблицу с оценками
             </Link>
           </p>
-          <div className="flex gap-12 items-center">
-            <button type="submit" className="btn btn-primary btn-lg btn-wide" disabled={isPending}>
+          <div className="flex gap-12 items-center w-full">
+            <button type="submit" className="btn btn-primary btn-lg w-full md:btn-wide" disabled={isPending}>
               {isPending && <span className="loading loading-spinner" />}
               {!isPending && 'Сохранить'}
             </button>
             {isSuccess && (
-              <Link className="btn-link" href="/log">
+              <Link className="btn-link hidden md:block" href="/log">
                 Открыть таблицу с оценками
               </Link>
             )}

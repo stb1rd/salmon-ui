@@ -10,12 +10,13 @@ export const SectionMale = () => {
       <div className="divider" />
       <div className="mt-4 flex gap-4 flex-wrap items-end">
         <h2 className="text-xl w-full">Репродуктивные показатели</h2>
-        <Input type="number" name="ejaculateVolume" label="Объем эякулята в день оплодотворения" />
-        <Input type="number" name="spermConcentration" label="Концентрация сперматозоидов/сперматокрит" />
+        <Input type="number" name="ejaculateVolume" label="Объем эякулята в день оплодотворения" topRightLabel="мл" />
+        <Input type="number-percent" name="spermConcentration" label="Концентрация сперматозоидов/сперматокрит" />
         <Input
           type="number"
           name="spermMotilityTime"
           label="Время подвижности сперматозоидов на оплодотворяющем растворе/воде"
+          topRightLabel="сек"
         />
       </div>
       <div className="divider" />

@@ -10,7 +10,7 @@ export default function Home() {
         </p>
         <p className="mt-6">Доступный функционал</p>
         <Link href="/new-bonitet" className="btn btn-primary">
-          Добавить бонитет
+          Начать оценку
         </Link>
       </div>
     </div>
