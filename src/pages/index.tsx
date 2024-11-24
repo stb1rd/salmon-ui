@@ -10,14 +10,14 @@ export default function Home() {
         </p>
         <p className="mt-6">Доступный функционал</p>
         <div className="flex gap-2">
+          <Link href="/new-bonitet" className="btn btn-primary">
+            Начать оценку
+          </Link>
           <Link href="/log" className="btn btn-primary">
             Просмотреть журнал оценок
           </Link>
           <Link href="/report" className="btn btn-primary">
             Просмотреть отчет по оценкам
-          </Link>
-          <Link href="/new-bonitet" className="btn btn-primary">
-            Начать оценку
           </Link>
         </div>
       </div>

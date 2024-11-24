@@ -5,9 +5,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Head from 'next/head';
 
 const MENU = [
+  { label: 'Новая оценка', href: '/new-bonitet' },
   { label: 'Журнал', href: '/log' },
   { label: 'Отчет', href: '/report' },
-  { label: 'Новая оценка', href: '/new-bonitet' },
 ];
 
 export const Layout = ({ children }: { children: ReactNode }) => (

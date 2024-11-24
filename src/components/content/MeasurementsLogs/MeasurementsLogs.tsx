@@ -78,9 +78,9 @@ export const MeasurementsLogs = () => {
                   <td className="text-right">{round(Number(measureItem.runnabilityIndex))}</td>
                   <td className="text-right">{round(Number(measureItem.headFactor))}</td>
                   <td className="text-right">{round(Number(measureItem.caviarProportion))}</td>
-                  <td className="text-right">{measureItem.workingFertility}</td>
-                  <td className="text-right">{measureItem.relativeFecundity}</td>
-                  <td className="text-right">{measureItem.reproductiveIndex}</td>
+                  <td className="text-right">{measureItem.workingFertility || 0}</td>
+                  <td className="text-right">{measureItem.relativeFecundity || 0}</td>
+                  <td className="text-right">{measureItem.reproductiveIndex || 0}</td>
                   <td className="text-right">{measureItem.percentOfDeathToThePeephole}</td>
                   <td className="text-right">{measureItem.percentOfDeathAfterThePeephole}</td>
                   <td className="text-right">{measureItem.percentOfEggFertilization}</td>
