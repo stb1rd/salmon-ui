@@ -49,6 +49,16 @@ export const MeasurementsReports = () => {
       type: 'CV показатели',
       ...data.cvReport,
     });
+    rows.push({
+      type: '1 класс от',
+      color: 'yellow',
+      ...data.yellowBoundValues.minimumBounds,
+    });
+    rows.push({
+      type: 'Элита от',
+      color: 'red',
+      ...data.redBoundValues.minimumBounds,
+    });
   }
 
   return (
@@ -88,7 +98,12 @@ export const MeasurementsReports = () => {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.type} className="hover">
+                <tr
+                  key={row.type}
+                  className={`${row.color === 'yellow' ? 'bg-yellow-200' : 'hover'} ${
+                    row.color === 'red' ? 'bg-red-200' : 'hover'
+                  }`}
+                >
                   <th className="pl-[28px]">{row.type}</th>
                   <td className="text-right">{round(Number(row.weight))}</td>
                   <td className="text-right">{round(Number(row.lengthBody))}</td>
