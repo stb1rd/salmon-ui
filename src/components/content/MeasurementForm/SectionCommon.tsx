@@ -54,7 +54,7 @@ export const SectionCommon = () => {
         />
         <Input type="number" name="lengthBody" label="Длина туловища" topRightLabel="см" />
         <Input type="number" name="lengthHead" label="Длина головы" topRightLabel="см" />
-        <Input type="number" name="heightBody" label="Высота тела" topRightLabel="см" />
+        <Input type="number" name="heightBody" label="Высота тела" topRightLabel="см" step={0.01} />
         <Input type="number" name="thicknessBody" label="Толщина тела" step={0.01} topRightLabel="см" />
         <Input type="number" name="thicknessOfBack" label="Толщина спинки" topRightLabel="см" />
         <Input type="number" name="weight" label="Вес тела" topRightLabel="г" />

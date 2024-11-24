@@ -1,3 +1,4 @@
+import { round } from '@/components/utils/round';
 import { set } from 'react-hook-form';
 
 export type MeasurementInputs = {
@@ -69,12 +70,13 @@ export const mapFormValuesToApi = (values: MeasurementInputs) => {
     thicknessBody: Number(values.thicknessBody),
     thicknessOfBack: Number(values.thicknessOfBack),
     weight: Number(values.weight),
+    gender: values.gender,
   };
   if (values.gender === 'male') {
     set(apiValues, 'ejaculateVolume', Number(values.ejaculateVolume));
     set(apiValues, 'spermConcentration', Number(values.spermConcentration));
     set(apiValues, 'spermMotilityTime', Number(values.spermMotilityTime));
-    set(apiValues, 'journal', values.journal);
+    if (values.journal) set(apiValues, 'journal', values.journal);
   }
   if (values.gender === 'female') {
     set(apiValues, 'weightOfEggs', Number(values.weightOfEggs));
@@ -93,8 +95,20 @@ export const mapFormValuesToApi = (values: MeasurementInputs) => {
     set(apiValues, 'filletPigmentation', Number(values.filletPigmentation));
     set(apiValues, 'activeFeedingSurvivalRate', Number(values.activeFeedingSurvivalRate));
     set(apiValues, 'diseaseResistance', Number(values.diseaseResistance));
+    if (values.journal) set(apiValues, 'journal', values.journal);
 
-    set(apiValues, 'journal', values.journal);
+    const lengthAbsolute = Number(values.lengthAbsolute) || 0;
+    const heightBody = Number(values.heightBody) || 0;
+    const runnabilityIndex = !heightBody || !lengthAbsolute ? 0 : round(lengthAbsolute / heightBody);
+    set(apiValues, 'runnabilityIndex', runnabilityIndex);
+
+    const weightOfEggs = Number(values.weightOfEggs) || 0;
+    const weight = Number(values.weight) || 0;
+    const relativeFecundity = !weightOfEggs || !weight ? 0 : round(weightOfEggs / (weight * 1000));
+    set(apiValues, 'relativeFecundity', relativeFecundity);
+
+    const reproductiveIndex = !weightOfEggs || !weight ? 0 : round(weightOfEggs / ((weight - weightOfEggs) * 1000));
+    set(apiValues, 'reproductiveIndex', reproductiveIndex);
   }
 
   return JSON.stringify(apiValues);

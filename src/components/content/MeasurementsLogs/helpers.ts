@@ -7,6 +7,12 @@ export type ApiMeasurementItem = MeasurementInputs & {
   reproductiveIndex: string;
 };
 
+export type DiapasonItem = {
+  fieldName: string;
+  yellowBound: number;
+  redBound: number;
+};
+
 export const getDateLabel = (dateRaw?: string) => {
   if (!dateRaw) {
     return null;

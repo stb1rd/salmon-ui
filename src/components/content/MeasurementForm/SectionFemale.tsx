@@ -11,7 +11,7 @@ export const SectionFemale = () => {
       <div className="mt-4 flex gap-4 flex-wrap items-end">
         <h2 className="text-xl w-full">Репродуктивные показатели</h2>
         <Input type="number" name="weightOfEggs" label="Масса икры" topRightLabel="г" />
-        <Input type="number" name="weightOfSingleEgg" label="Масса икринки" topRightLabel="мг" />
+        <Input type="number" name="weightOfSingleEgg" label="Масса икринки" topRightLabel="мг" step={0.01} />
         <Input type="number-percent" name="caviarProportion" label="Доля икры" />
         <Input type="number-percent" name="workingFertility" label="Рабочая плодовитость" />
       </div>
