@@ -2,66 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ApiMeasurementItem } from './helpers';
 import { labelsByNamePathDict } from '@/constants';
 import { round } from '@/components/utils/round';
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MOCKED_GRADES = {
-  content: [
-    {
-      id: 1,
-      tag: 'Marker_Value',
-      created: null,
-      dateOfBirth: '2023-10-26',
-      dateOfHatch: '2023-11-15',
-      dateOfFirstFeed: '2023-12-01',
-      ageInDays: 30,
-      ageInDayDegrees: 1500,
-      lengthAbsolute: 120,
-      lengthBeforeScales: 110,
-      lengthBody: 105,
-      lengthHead: 20,
-      heightBody: 15,
-      thicknessOfBack: 10,
-      fatnessFactor: 12.5,
-      headFactor: 18.0,
-      thickFactor: 10.2,
-      runnabilityIndex: 95.7,
-      ejaculateVolume: 150,
-      spermConcentration: 55.0,
-      spermMotilityTime: 60,
-      diary: 'Some diary notes here...',
-    },
-    {
-      id: 2,
-      tag: 'Marker_Value',
-      created: null,
-      dateOfBirth: '2023-10-26',
-      dateOfHatch: '2023-11-15',
-      dateOfFirstFeed: '2023-12-01',
-      ageInDays: 30,
-      ageInDayDegrees: 1500,
-      lengthAbsolute: 120,
-      lengthBeforeScales: 110,
-      lengthBody: 105,
-      lengthHead: 20,
-      heightBody: 15,
-      thicknessOfBack: 10,
-      fatnessFactor: 12.5,
-      headFactor: 18.0,
-      thickFactor: 10.2,
-      runnabilityIndex: 95.7,
-      ejaculateVolume: 150,
-      spermConcentration: 55.0,
-      spermMotilityTime: 60,
-      diary: 'Some diary notes here...',
-    },
-  ],
-  page: {
-    size: 20,
-    number: 0,
-    totalElements: 9,
-    totalPages: 1,
-  },
-};
+import { MOCKED_GRADES } from './mocked-grades';
 
 const getDateLabel = (dateRaw?: string) => {
   if (!dateRaw) {
@@ -72,32 +13,17 @@ const getDateLabel = (dateRaw?: string) => {
   return `${date.toLocaleDateString()} в ${date.toLocaleTimeString()}`;
 };
 
-// "weight": 3120.9220779220777,
-// "lengthBody": 99.50993377483444,
-// "heightBody": 14.059602649006623,
-// "thicknessOfBack": 10.092715231788079,
-// "weightOfEggs": 232.0,
-// "weightOfSingleEgg": 62.0,
-// "fatnessFactor": 11.904137931034475,
-// "thickFactor": 9.903448275862068,
-// "runnabilityIndex": 86.4448275862069,
-// "headFactor": 17.366896551724135,
-// "caviarProportion": 0.18477611940298483,
-// "workingFertility": 2520.283582089552,
-// "relativeFecundity": 2866.6119402985073,
-// "reproductiveIndex": 258.44776119402985,
-// "percentOfDeathToThePeephole": 4.0,
-// "percentOfDeathAfterThePeephole": 1.0,
-// "percentOfEggFertilization": 77.0,
-// "percentOfEmbryoSurvival": 88.0
-
 export const MeasurementsLogs = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['log'],
     queryFn: async () => {
-      // return MOCKED_GRADES;
-      const response = await fetch('http://194.87.131.215:8080/trout/rest/selects_grading?size=1000&genderIn=female');
-      return await response.json();
+      try {
+        const response = await fetch('http://194.87.131.215:8080/trout/rest/selects_grading?size=1000&genderIn=female');
+        return await response.json();
+      } catch (error) {
+        console.error(error);
+        return MOCKED_GRADES;
+      }
     },
   });
 
