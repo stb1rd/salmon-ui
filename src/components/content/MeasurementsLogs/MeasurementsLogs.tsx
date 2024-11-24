@@ -75,7 +75,7 @@ export const MeasurementsLogs = () => {
                   <td className="text-right">{measureItem.weightOfSingleEgg}</td>
                   <td className="text-right">{round(Number(measureItem.fatnessFactor))}</td>
                   <td className="text-right">{round(Number(measureItem.thickFactor))}</td>
-                  <td className="text-right">{measureItem.runnabilityIndex}</td>
+                  <td className="text-right">{round(Number(measureItem.runnabilityIndex))}</td>
                   <td className="text-right">{round(Number(measureItem.headFactor))}</td>
                   <td className="text-right">{round(Number(measureItem.caviarProportion))}</td>
                   <td className="text-right">{measureItem.workingFertility}</td>
