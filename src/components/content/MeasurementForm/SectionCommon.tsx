@@ -1,7 +1,8 @@
 import { useFormContext } from 'react-hook-form';
-import { getAgeInDayDegrees, getRounded, MeasurementInputs } from './helpers';
+import { getAgeInDayDegrees, MeasurementInputs } from './helpers';
 import { Input } from '@/components/ui/Input';
 import { spellPlurals } from '@/components/utils/spellPlurals';
+import { round } from '@/components/utils/round';
 
 const FATNESS_FACTOR_AVG = 1.342;
 const THICK_FACTOR_AVG = 11.224;
@@ -16,14 +17,14 @@ export const SectionCommon = () => {
   const thicknessBody = Number(watch('thicknessBody')) || 0;
   const heightBody = Number(watch('heightBody')) || 0;
 
-  const fatnessFactor = !weight || !lengthAbsolute ? 0 : getRounded((weight / Math.pow(lengthAbsolute, 3)) * 100);
+  const fatnessFactor = !weight || !lengthAbsolute ? 0 : round((weight / Math.pow(lengthAbsolute, 3)) * 100);
   const isFatnessFactorValid = fatnessFactor && Math.abs(FATNESS_FACTOR_AVG - fatnessFactor) > 0.1;
 
-  const thickFactor = !lengthAbsolute || !thicknessBody ? 0 : getRounded((thicknessBody / lengthAbsolute) * 100);
+  const thickFactor = !lengthAbsolute || !thicknessBody ? 0 : round((thicknessBody / lengthAbsolute) * 100);
   const isThickFactorValid = thickFactor && Math.abs(THICK_FACTOR_AVG - thickFactor) > 1;
 
-  const headFactor = !lengthHead || !lengthAbsolute ? 0 : getRounded((lengthHead / lengthAbsolute) * 100);
-  const runnabilityIndex = !heightBody || !lengthAbsolute ? 0 : getRounded(lengthAbsolute / heightBody);
+  const headFactor = !lengthHead || !lengthAbsolute ? 0 : round((lengthHead / lengthAbsolute) * 100);
+  const runnabilityIndex = !heightBody || !lengthAbsolute ? 0 : round(lengthAbsolute / heightBody);
 
   return (
     <>
