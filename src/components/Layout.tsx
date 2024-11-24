@@ -6,8 +6,8 @@ import Head from 'next/head';
 
 const MENU = [
   { label: 'Журнал', href: '/log' },
+  { label: 'Отчет', href: '/report' },
   { label: 'Новая оценка', href: '/new-bonitet' },
-  { label: 'Родословные', href: '/lineage' },
 ];
 
 export const Layout = ({ children }: { children: ReactNode }) => (
