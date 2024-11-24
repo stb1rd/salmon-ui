@@ -6,7 +6,6 @@ export const POST_PARAMS = {
 };
 export const URL_GRADING_POST = 'http://194.87.131.215:8080/trout/rest/selects_grading';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MAP_LABEL_TO_FIELD_NAME = [
   ['Метка (Идентификатор)', 'tag'],
   ['Дата рождения', 'dateOfBirth'],
@@ -34,6 +33,8 @@ const MAP_LABEL_TO_FIELD_NAME = [
   ['Масса икринки', 'weightOfSingleEgg'],
   ['Доля икры', 'caviarProportion'],
   ['Рабочая плодовитость', 'workingFertility'],
+  ['Относительная плодовитость', 'relativeFecundity'],
+  ['Индекс репродуктивности', 'reproductiveIndex'],
   // Оценка по качеству потомства
   ['% оплодотворения икры', 'percentOfEggFertilization'],
   ['% выживания эмбрионов', 'percentOfEmbryoSurvival'],
@@ -50,3 +51,4 @@ const MAP_LABEL_TO_FIELD_NAME = [
   ['Устойчивость к болезням (% выживаемости при контакте с патогеном через 14 дней)', 'diseaseResistance'],
   ['Дневник самки (возможен текстовый формат блокнота/заметок)', 'journal'],
 ];
+export const labelsByNamePathDict = new Map(MAP_LABEL_TO_FIELD_NAME.map(([label, name]) => [name, label]));

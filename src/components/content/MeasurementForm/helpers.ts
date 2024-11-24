@@ -97,5 +97,3 @@ export const mapFormValuesToApi = (values: MeasurementInputs) => {
 
   return JSON.stringify(apiValues);
 };
-
-export const getRounded = (target: number) => Math.round(target * 1000) / 1000;
