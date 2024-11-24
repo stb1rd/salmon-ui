@@ -142,7 +142,7 @@ export const MeasurementForm = () => {
             </Link>
           </p>
           {apiSuggestions.map((x) => (
-            <p>{x}</p>
+            <p key={x}>{x}</p>
           ))}
           <div className="flex gap-12 items-center w-full">
             <button type="submit" className="btn btn-primary btn-lg w-full md:btn-wide" disabled={isPending}>

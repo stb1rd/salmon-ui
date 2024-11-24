@@ -9,6 +9,7 @@ export const MeasurementsLogs = () => {
     queryKey: ['log'],
     queryFn: async () => {
       try {
+        throw new Error();
         const response = await fetch('http://194.87.131.215:8080/trout/rest/selects_grading?size=1000&genderIn=female');
         return await response.json();
       } catch (error) {

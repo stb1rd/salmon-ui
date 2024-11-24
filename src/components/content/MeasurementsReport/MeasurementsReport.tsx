@@ -81,7 +81,7 @@ export const MeasurementsReports = () => {
                 </span>
               </div>
               {data.yellowBoundValues.fishCharacteristics.slice(500, 503).map((fishItem: FishItem) => (
-                <span className="badge">{`id: ${fishItem.id}, ${labelsByNamePathDict
+                <span key={fishItem.id} className="badge">{`id: ${fishItem.id}, ${labelsByNamePathDict
                   .get(fishItem.fieldName)
                   ?.toLowerCase()}: ${round(fishItem.value)}`}</span>
               ))}
@@ -100,7 +100,7 @@ export const MeasurementsReports = () => {
                 </span>
               </div>
               {data.redBoundValues.fishCharacteristics.slice(10, 13).map((fishItem: FishItem) => (
-                <span className="badge">{`id: ${fishItem.id}, ${labelsByNamePathDict
+                <span key={fishItem.id} className="badge">{`id: ${fishItem.id}, ${labelsByNamePathDict
                   .get(fishItem.fieldName)
                   ?.toLowerCase()}: ${round(fishItem.value)}`}</span>
               ))}
