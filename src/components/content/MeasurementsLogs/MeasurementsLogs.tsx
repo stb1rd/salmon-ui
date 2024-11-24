@@ -62,7 +62,7 @@ export const MeasurementsLogs = () => {
               </tr>
             </thead>
             <tbody>
-              {data.content.map((measureItem: ApiMeasurementItem, i: number) => (
+              {data.content.content.map((measureItem: ApiMeasurementItem, i: number) => (
                 <tr key={measureItem.id} className="hover">
                   <th className="pl-[28px]">{i + 1}</th>
                   <th>{measureItem.tag}</th>

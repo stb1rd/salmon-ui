@@ -11,24 +11,36 @@ import { mapFormValuesToApi, MeasurementInputs } from './helpers';
 import { SectionMale } from './SectionMale';
 import { SectionFemale } from './SectionFemale';
 import { SectionCommon } from './SectionCommon';
-import { POST_PARAMS, URL_GRADING_POST } from '@/constants';
+import { labelsByNamePathDict, POST_PARAMS, URL_GRADING_POST } from '@/constants';
+import { round } from '@/components/utils/round';
 
 export const MeasurementForm = () => {
   const methods = useForm<MeasurementInputs>({ defaultValues: { gender: 'unknown' } });
   const { handleSubmit, watch, reset } = methods;
   const [isErrorVisible, setIsErrorVisible] = useState(false);
   const [isSuccessMsgVisible, setIsSuccessMsgVisible] = useState(false);
+  const [apiSuggestions, setApiSuggestions] = useState<string[]>([]);
 
   const queryClient = useQueryClient();
   const { mutate, isPending, isSuccess } = useMutation({
     retry: 0,
     mutationFn: async (values: MeasurementInputs) => {
+      setApiSuggestions([]);
       setIsErrorVisible(false);
       setIsSuccessMsgVisible(false);
       const response = await fetch(URL_GRADING_POST, { body: mapFormValuesToApi(values), ...POST_PARAMS });
+      const json = await response.json();
       if (response.status !== 200) {
-        const json = await response.json();
         throw new Error(json.error);
+      }
+      if (response.status === 200 && json.report.report.length) {
+        const reports = json.report.report.map(
+          (reportItem: { fieldName: string; message: string; value: number }) =>
+            `Обратите внимание на поле ${labelsByNamePathDict.get(
+              reportItem.fieldName
+            )} – ${reportItem.message.toLowerCase()} при значении ${round(reportItem.value)}`
+        );
+        setApiSuggestions(reports);
       }
     },
     onError: (error) => {
@@ -129,6 +141,9 @@ export const MeasurementForm = () => {
               таблицу с оценками
             </Link>
           </p>
+          {apiSuggestions.map((x) => (
+            <p>{x}</p>
+          ))}
           <div className="flex gap-12 items-center w-full">
             <button type="submit" className="btn btn-primary btn-lg w-full md:btn-wide" disabled={isPending}>
               {isPending && <span className="loading loading-spinner" />}

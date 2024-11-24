@@ -3,6 +3,8 @@ import { labelsByNamePathDict } from '@/constants';
 import { round } from '@/components/utils/round';
 import { MOCKED_GRADE } from './mocks';
 import { FishItem, ReportItem } from './helpers';
+import { spellPlurals } from '@/components/utils/spellPlurals';
+import Link from 'next/link';
 
 export const MeasurementsReports = () => {
   const { data, isLoading } = useQuery({
@@ -68,14 +70,45 @@ export const MeasurementsReports = () => {
       {shouldRenderDataEmpty && <span>Ничего не найдено</span>}
       {shouldRenderData && (
         <>
-          <div className="flex gap-8 mt-8">
-            <div className="flex text-xl items-center">
-              Всего самок в 1 классе
-              <span className="ml-2 bg-yellow-200 p-2">{data.yellowBoundValues.fishCharacteristics.length}</span>
+          <div className="flex gap-1 mt-8 flex-col items-start">
+            <div className="flex bg-yellow-200 p-1 items-center gap-2">
+              <div className="flex text-l">
+                1 класс – всего
+                <span className="ml-2">
+                  {data.yellowBoundValues.fishCharacteristics.length}{' '}
+                  {spellPlurals(data.yellowBoundValues.fishCharacteristics.length, 'самка', 'самки', 'самок')}, в том
+                  числе
+                </span>
+              </div>
+              {data.yellowBoundValues.fishCharacteristics.slice(500, 503).map((fishItem: FishItem) => (
+                <span className="badge">{`id: ${fishItem.id}, ${labelsByNamePathDict
+                  .get(fishItem.fieldName)
+                  ?.toLowerCase()}: ${round(fishItem.value)}`}</span>
+              ))}
+              <span className="text-sm">
+                <Link href="/log" className="btn btn-link btn-xs">
+                  Подробнее
+                </Link>
+              </span>
             </div>
-            <div className="flex text-xl items-center">
-              Всего самок в элите
-              <span className="ml-2 bg-red-200 p-2">{data.redBoundValues.fishCharacteristics.length}</span>
+            <div className="flex bg-red-200 p-1 items-center gap-2">
+              <div className="flex text-l">
+                Элита – всего
+                <span className="ml-2">
+                  {data.redBoundValues.fishCharacteristics.length}{' '}
+                  {spellPlurals(data.redBoundValues.fishCharacteristics.length, 'самка', 'самки', 'самок')}, в том числе
+                </span>
+              </div>
+              {data.redBoundValues.fishCharacteristics.slice(10, 13).map((fishItem: FishItem) => (
+                <span className="badge">{`id: ${fishItem.id}, ${labelsByNamePathDict
+                  .get(fishItem.fieldName)
+                  ?.toLowerCase()}: ${round(fishItem.value)}`}</span>
+              ))}
+              <span className="text-sm">
+                <Link href="/log" className="btn btn-link btn-xs">
+                  Подробнее
+                </Link>
+              </span>
             </div>
           </div>
           <div
