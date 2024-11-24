@@ -40,6 +40,8 @@ export type MeasurementInputs = {
   activeFeedingSurvivalRate?: string;
   diseaseResistance?: string;
   journal?: string;
+  relativeFecundity?: string;
+  reproductiveIndex?: string;
 };
 
 export const getAgeInDayDegrees = (ageInDays: number) => {

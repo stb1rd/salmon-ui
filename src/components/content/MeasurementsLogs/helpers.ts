@@ -6,3 +6,12 @@ export type ApiMeasurementItem = MeasurementInputs & {
   relativeFecundity: string;
   reproductiveIndex: string;
 };
+
+export const getDateLabel = (dateRaw?: string) => {
+  if (!dateRaw) {
+    return null;
+  }
+
+  const date = new Date(dateRaw);
+  return `${date.toLocaleDateString()} в ${date.toLocaleTimeString()}`;
+};
